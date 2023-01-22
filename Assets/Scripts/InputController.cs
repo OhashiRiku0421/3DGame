@@ -1,18 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputController
+public class InputController : MonoBehaviour
 {
-    ////private PlayerInputSystem _input;
-    //private PlayerInput _playerInput;
+    [SerializeField]
+    PlayercCntroller _playerCntroller;
 
-    //public void Input()
-    //{
-    //    _playerInput.onActionTriggered += PlayerInput;
-    //}
+    PlayerInputSystem _playerInput;
 
-    //private void PlayerInput(InputAction.CallbackContext context)
-    //{
-    //    var test = context.ReadValue<Vector3>();
-    //}
+    private void Start()
+    {
+        Input();
+    }
+
+    private void Input()
+    {
+        _playerCntroller.Input.actions["Move"].performed += PlayerInput;
+        _playerCntroller.Input.actions["Move"].canceled += PlayerInput;
+    }
+    public void PlayerInput(InputAction.CallbackContext context)
+    {
+        _playerCntroller.MoveDir = context.ReadValue<Vector2>();
+    }
 }
