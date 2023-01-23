@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
@@ -8,18 +7,16 @@ public class InputController : MonoBehaviour
 
     PlayerInputSystem _playerInput;
 
-    private void Start()
+    private void Awake()
     {
-        Input();
+        PlayerInput();
     }
 
-    private void Input()
+    private void PlayerInput()
     {
-        _playerCntroller.Input.actions["Move"].performed += PlayerInput;
-        _playerCntroller.Input.actions["Move"].canceled += PlayerInput;
-    }
-    public void PlayerInput(InputAction.CallbackContext context)
-    {
-        _playerCntroller.MoveDir = context.ReadValue<Vector2>();
+        _playerInput = new PlayerInputSystem();
+        _playerInput.Enable();
+        _playerInput.Player.Move.performed += context => _playerCntroller.PlayerMove.MoveDir = context.ReadValue<Vector3>();
+        _playerInput.Player.Move.canceled += context => _playerCntroller.PlayerMove.MoveDir = Vector3.zero;
     }
 }
