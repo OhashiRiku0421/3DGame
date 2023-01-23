@@ -1,27 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayercCntroller : MonoBehaviour
 {
-    private Vector2 _moveDir = default;
-    private Rigidbody _rb;
     [SerializeField]
-    private PlayerInput _input;
+    private PlayerMove _playerMove;
+    public PlayerMove PlayerMove => _playerMove;
 
-    public PlayerInput Input  => _input;
-
-    public　Vector2 MoveDir { get => _moveDir; set => _moveDir = new Vector2(); }
-
-
+    private Rigidbody _rb;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        //Input();
+        _playerMove.Init(_rb, transform);
     }
+
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(_moveDir.x, 0) * 3;
+        _playerMove.HorizontalMove();
+        _playerMove.ForwardMove();
     }
 
     private void Update()
