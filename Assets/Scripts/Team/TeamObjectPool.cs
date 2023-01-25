@@ -8,7 +8,7 @@ public class TeamObjectPool : MonoBehaviour
 
     [SerializeField, Tooltip("プールサイズ")]
     int _poolSize = 100;
-    [SerializeField]
+    [SerializeField, Tooltip("Poolに入れるクラス")]
     PoolObject _poolObject;
 
     private void Start()
@@ -31,13 +31,11 @@ public class TeamObjectPool : MonoBehaviour
 
         foreach (var pool in _list)
         {
+            //非アクティブのObjectを検索する
             if (pool.gameObject.activeSelf == false)
             {
                 pool.gameObject.SetActive(true);
-                float testz = Random.Range(-1, -4);
-                float testx = Random.Range(-2, 2);
-               // pool.V3 = 
-
+                pool.gameObject.transform.position = gunTransform.position;
                 return;
             }
         }
