@@ -32,7 +32,7 @@ public class TeamObjectPool : MonoBehaviour
         foreach (var pool in _list)
         {
             //非アクティブのObjectを検索する
-            if (pool.gameObject.activeSelf == false)
+            if (!pool.gameObject.activeSelf)
             {
                 pool.gameObject.SetActive(true);
                 pool.gameObject.transform.position = gunTransform.position;

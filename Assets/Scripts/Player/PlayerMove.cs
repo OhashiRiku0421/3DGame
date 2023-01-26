@@ -3,9 +3,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMove
 {
-    [SerializeField]
+    [SerializeField, Tooltip("左右の移動スピード")]
     private float _horizontalMoveSpeed = 5f;
-    [SerializeField]
+    [SerializeField, Tooltip("前方向の移動スピード")]
     private float _forwardMoveSpeed = 3f;
 
     private Vector3 _moveDir = default;
@@ -20,7 +20,9 @@ public class PlayerMove
         _transform = transform;
 
     }
-
+    /// <summary>
+    /// インプットシステムから受け取った入力でプレイヤーを左右に動かす。
+    /// </summary>
     public void HorizontalMove()
     {
         _rb.velocity = new Vector3(_horizontalMoveSpeed * _moveDir.x,
@@ -28,8 +30,11 @@ public class PlayerMove
             _rb.velocity.z);
     }
 
+    /// <summary>
+    /// プレイヤーの前方向に自動で移動する。
+    /// </summary>
     public void ForwardMove()
     {
-        _transform.Translate(Vector3.forward * Time.deltaTime * _forwardMoveSpeed);
+        _transform.Translate(Vector3.forward * Time.fixedDeltaTime * _forwardMoveSpeed);
     }
 }

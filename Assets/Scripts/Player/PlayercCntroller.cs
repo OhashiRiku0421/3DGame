@@ -6,9 +6,9 @@ public class PlayercCntroller : MonoBehaviour
     [SerializeField, Tooltip("プレイヤーの移動")]
     private PlayerMove _playerMove;
     [SerializeField, Tooltip("チームを生成する場所")]
-    private List<Transform> _teamPos = new List<Transform>();
+    private Transform[] _teamPos;
 
-    public List<Transform> TeamPos => _teamPos;
+    public Transform[] TeamPos => _teamPos;
     public PlayerMove PlayerMove => _playerMove;
 
     private Rigidbody _rb;

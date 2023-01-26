@@ -7,25 +7,39 @@ public class TeamGenerator : MonoBehaviour
     [SerializeField, Tooltip("必要なチームの数")]
     private int _teamNum = 10;
     [SerializeField]
-    private TeamObjectPool _teamPool;
+    private TeamObjectPool _teamPool = null;
 
-    private void OnTriggerEnter(Collider other)
+    public void Generator(Transform[] transforms)
     {
-        if(other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playerController))
+        for(int i = 0; i < _teamNum; i++)
         {
-            TeamPop(playerController.TeamPos);
+            TeamPop(transforms);
         }
     }
 
     /// <summary>
-    /// poolから必要な分使う
+    /// Poolのオブジェクトをどこで使うかを決めるメソッド
     /// </summary>
-    private void TeamPop(List<Transform> teamPos)
+    private void TeamPop(Transform[] teamPos)
     {
-        for(int i = 0; i < _teamNum; i++)
+        foreach (var n in teamPos)
         {
-            int test = Random.Range(0, teamPos.Count);
-            _teamPool.PoolPop(teamPos[test]);
+            if(!n.gameObject.activeSelf)
+            {
+                n.gameObject.SetActive(true);
+                _teamPool.PoolPop(n);
+                return;
+            }
+        }
+
+        Debug.LogError("基底より多く使おうとしています。");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
+        {
+            Generator(playercCntroller.TeamPos);
         }
     }
 }
