@@ -36,6 +36,8 @@ public class TeamObjectPool : MonoBehaviour
             {
                 pool.gameObject.SetActive(true);
                 pool.gameObject.transform.position = gunTransform.position;
+               // pool.gameObject.transform.SetParent(gunTransform);
+                pool.Init(gunTransform);
                 return;
             }
         }

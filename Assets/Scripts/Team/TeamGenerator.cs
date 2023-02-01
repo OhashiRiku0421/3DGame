@@ -34,12 +34,20 @@ public class TeamGenerator : MonoBehaviour
 
         Debug.LogError("Šî’ê‚æ‚è‘½‚­g‚¨‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·B");
     }
+    private void Test(Transform trans)
+    {
+        for (int i = 0; i < _teamNum; i++)
+        {
+            _teamPool.PoolPop(trans);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
         {
             Generator(playercCntroller.TeamPos);
+            //Test(playercCntroller._test);
         }
     }
 }
