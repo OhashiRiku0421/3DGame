@@ -26,7 +26,7 @@ public class TeamObjectPool : MonoBehaviour
     /// <summary>
     /// オブジェクトをに実行するためのメソッド
     /// </summary>
-    public void PoolPop(Transform gunTransform)
+    public void PoolPop(Vector2 gunTransform)
     {
 
         foreach (var pool in _list)
@@ -35,9 +35,8 @@ public class TeamObjectPool : MonoBehaviour
             if (!pool.gameObject.activeSelf)
             {
                 pool.gameObject.SetActive(true);
-                pool.gameObject.transform.position = gunTransform.position;
-               // pool.gameObject.transform.SetParent(gunTransform);
-                pool.Init(gunTransform);
+                pool.gameObject.transform.position = new Vector3(gunTransform.x, 1, gunTransform.y);
+                //pool.Init(gunTransform);
                 return;
             }
         }

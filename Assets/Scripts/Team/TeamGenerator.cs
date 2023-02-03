@@ -8,6 +8,8 @@ public class TeamGenerator : MonoBehaviour
     private int _teamNum = 10;
     [SerializeField]
     private TeamObjectPool _teamPool = null;
+    [SerializeField]
+    private PlayercCntroller _player;
 
     public void Generator(Transform[] transforms)
     {
@@ -27,27 +29,37 @@ public class TeamGenerator : MonoBehaviour
             if(!n.gameObject.activeSelf)
             {
                 n.gameObject.SetActive(true);
-                _teamPool.PoolPop(n);
+                //_teamPool.PoolPop(n);
                 return;
             }
         }
 
         Debug.LogError("äÓíÍÇÊÇËëΩÇ≠égÇ®Ç§Ç∆ÇµÇƒÇ¢Ç‹Ç∑ÅB");
     }
-    private void Test(Transform trans)
-    {
-        for (int i = 0; i < _teamNum; i++)
-        {
-            _teamPool.PoolPop(trans);
-        }
-    }
+    //private void Test(Transform trans)
+    //{
+    //    for (int i = 0; i < _teamNum; i++)
+    //    {
+    //        _teamPool.PoolPop(trans);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
         {
-            Generator(playercCntroller.TeamPos);
+            //Generator(playercCntroller.TeamPos);
             //Test(playercCntroller._test);
+            Test(playercCntroller.Dir);
+        }
+    }
+
+    private void Test(Vector2 player)
+    {
+        for(int i = 0; i < _teamNum; i++)
+        {
+            var rand = 3 * Random.insideUnitCircle + _player.Dir;
+            _teamPool.PoolPop(rand);
         }
     }
 }

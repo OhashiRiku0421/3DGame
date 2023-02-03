@@ -8,10 +8,14 @@ public class PlayercCntroller : MonoBehaviour
     [SerializeField, Tooltip("チームを生成する場所")]
     private Transform[] _teamPos;
 
+    public Transform _test;
+
     public Transform[] TeamPos => _teamPos;
     public PlayerMove PlayerMove => _playerMove;
 
     private Rigidbody _rb;
+    private Vector2 _dir = new Vector2(0, -5);
+    public Vector2 Dir { get => _dir; set => _dir = value; }
 
     private void Start()
     {
