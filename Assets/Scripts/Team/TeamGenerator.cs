@@ -6,60 +6,56 @@ public class TeamGenerator : MonoBehaviour
 {
     [SerializeField, Tooltip("必要なチームの数")]
     private int _teamNum = 10;
+
     [SerializeField]
     private TeamObjectPool _teamPool = null;
-    [SerializeField]
-    private PlayercCntroller _player;
 
-    public void Generator(Transform[] transforms)
+    public void Generator(Transform[] transforms, Transform playerPos)
     {
-        for(int i = 0; i < _teamNum; i++)
+        for (int i = 0; i < _teamNum; i++)
         {
-            TeamPop(transforms);
+            TeamPop(transforms, playerPos);
+            //_teamPool.PoolPop(transforms);
         }
     }
 
     /// <summary>
     /// Poolのオブジェクトをどこで使うかを決めるメソッド
     /// </summary>
-    private void TeamPop(Transform[] teamPos)
+    private void TeamPop(Transform[] teamPos, Transform playerPos)
     {
         foreach (var n in teamPos)
         {
-            if(!n.gameObject.activeSelf)
+            if (!n.gameObject.activeSelf)
             {
                 n.gameObject.SetActive(true);
-                //_teamPool.PoolPop(n);
+               // _teamPool.PoolPop(n, playerPos);
                 return;
             }
         }
 
         Debug.LogError("基底より多く使おうとしています。");
     }
-    //private void Test(Transform trans)
-    //{
-    //    for (int i = 0; i < _teamNum; i++)
-    //    {
-    //        _teamPool.PoolPop(trans);
-    //    }
-    //}
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
+        if (other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
         {
-            //Generator(playercCntroller.TeamPos);
-            //Test(playercCntroller._test);
-            Test(playercCntroller.Dir);
+            //Generator(playercCntroller.TeamPos, playercCntroller.transform);
+
+            RandomTransform(playercCntroller.RangeLeft,
+                playercCntroller.RangeRight,
+                playercCntroller.transform);
         }
     }
 
-    private void Test(Vector2 player)
+    private void RandomTransform(Transform rangeLeft, Transform RrangeRight, Transform playr)
     {
-        for(int i = 0; i < _teamNum; i++)
+        for (int i = 0; i < _teamNum; i++)
         {
-            var rand = 3 * Random.insideUnitCircle + _player.Dir;
-            _teamPool.PoolPop(rand);
+            var x = Random.Range(rangeLeft.position.x, RrangeRight.position.x);
+            var z = Random.Range(rangeLeft.position.z, RrangeRight.position.z);
+            _teamPool.PoolPop(new Vector3(x, 0, z), playr);
         }
     }
 }
