@@ -6,9 +6,9 @@ public class PoolObject : MonoBehaviour
 {
     [SerializeField]
     private float _teamSpeed;
+
     private Rigidbody _rb;
-    private Transform _transform;
-    public Vector3 v3 = new Vector3();
+    private Transform _playerTransform;
 
     private void Start()
     {
@@ -17,17 +17,22 @@ public class PoolObject : MonoBehaviour
 
     public void Init(Transform trans)
     {
-        _transform = trans;
+        _playerTransform = trans;
     }
 
     private void Update()
     {
-        //Test();
+        MoveTest();
     }
 
-    private void Test()
+    private void MoveTest()
     {
-        var x = _transform.position - transform.position;
-        _rb.velocity = new Vector3(x.x, 0, x.z) * _teamSpeed + new Vector3(0, _rb.velocity.y, 0);
+        var distance = _playerTransform.position - transform.position;
+        _rb.velocity = new Vector3(distance.x, distance.y, distance.z - 2).normalized * _teamSpeed + new Vector3(0, _rb.velocity.y, 0);
     }
+    //private void A()
+    //{
+    //    var distance = (_transform.position - transform.position);
+    //    transform.Translate(new Vector3(distance.x, 0, distance.z - 1) * Time.deltaTime * _teamSpeed);
+    //}
 }
