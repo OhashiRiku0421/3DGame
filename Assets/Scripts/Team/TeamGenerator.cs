@@ -29,7 +29,7 @@ public class TeamGenerator : MonoBehaviour
             if (!n.gameObject.activeSelf)
             {
                 n.gameObject.SetActive(true);
-               // _teamPool.PoolPop(n, playerPos);
+                //_teamPool.PoolPop(n, playerPos);
                 return;
             }
         }

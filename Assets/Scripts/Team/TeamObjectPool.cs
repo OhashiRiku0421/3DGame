@@ -35,7 +35,7 @@ public class TeamObjectPool : MonoBehaviour
             if (!pool.gameObject.activeSelf)
             {
                 pool.gameObject.SetActive(true);
-                pool.gameObject.transform.position = new Vector3(pos.x, -0.3f, pos.z);
+                pool.gameObject.transform.position = pos;
                 pool.Init(playerpos);
                 return;
             }
