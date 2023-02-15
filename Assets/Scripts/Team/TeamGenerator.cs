@@ -41,7 +41,7 @@ public class TeamGenerator : MonoBehaviour
     {
         if (other.TryGetComponent<PlayercCntroller>(out PlayercCntroller playercCntroller))
         {
-            //Generator(playercCntroller.TeamPos, playercCntroller.transform);
+            Generator(playercCntroller.TeamPos, playercCntroller.transform);
 
             RandomTransform(playercCntroller.RangeLeft,
                 playercCntroller.RangeRight,
