@@ -13,8 +13,8 @@ public class PlayerMove
 
     private Rigidbody _rb;
     private Transform _transform;
-    
-    public void Init(Rigidbody rb, Transform transform)
+
+        public void Init(Rigidbody rb, Transform transform)
     {
         _rb = rb;
         _transform = transform;
