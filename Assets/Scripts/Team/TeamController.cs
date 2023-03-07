@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamController : MonoBehaviour
+public class TeamController : MonoBehaviour, IPause
 {
-    [SerializeField]
-    private float _teamSpeed;
+
     [SerializeField, Tooltip("チームを生成する範囲")]
     private Transform _rangeLeft;
     public Transform RangeLeft => _rangeLeft;
@@ -14,21 +12,66 @@ public class TeamController : MonoBehaviour
     private Transform _rangeRight;
     public Transform RangeRight => _rangeRight;
 
-    private Rigidbody _rb;
-    private Transform _playerTransform;
+    [SerializeField, Tooltip("ミイラの移動速度")]
+    private float _moveSpeed = 4f;
+
+    private bool _isPause = false;
+
+    [SerializeField]
+    private AudioSource _audio;
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        PauseManager.Instance.Entry(gameObject);
     }
 
     private void Update()
     {
-        ForwardMove();
+        if(!_isPause)
+        {
+            Move();
+        }
     }
 
-    public void ForwardMove()
+    /// <summary>
+    /// 移動処理
+    /// </summary>
+    private void Move()
     {
-        transform.Translate(Vector3.forward * Time.fixedDeltaTime * _teamSpeed);
+        transform.Translate(Vector3.forward * Time.fixedDeltaTime * _moveSpeed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.TryGetComponent<IAddDamage>(out IAddDamage addDamage))
+        {
+            addDamage.AddDamage();
+            _audio.Play();
+            StartCoroutine(AudioInterval());
+        }
+    }
+
+    /// <summary>
+    /// 音が出ている間Poolに戻さない
+    /// </summary>
+    IEnumerator AudioInterval()
+    {
+        yield return new WaitForSeconds(0.3f);
+        gameObject.SetActive(false);
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+    }
+
+    public void Resume()
+    {
+        _isPause = false;
+    }
+
+    private void OnDestroy()
+    {
+        PauseManager.Instance.Lift(gameObject);
     }
 }

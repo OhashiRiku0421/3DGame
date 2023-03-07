@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FadeSystem : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Tooltip("Fade‚Ìƒpƒlƒ‹")]
     private Image _image;
 
     void Start()
@@ -19,7 +19,7 @@ public class FadeSystem : MonoBehaviour
     public void FadeOut(string sceneName)
     {
         _image.enabled = true;
-        _image.DOFade(1, 1.5f)
+        _image.DOFade(1, 0.8f)
             .SetDelay(0.5f)
             //fadeout‚ªI‚í‚Á‚½‚çŒÄ‚Î‚ê‚é
             .OnComplete(() => SceneManager.LoadScene(sceneName));
