@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 7873796717653645964}
   - component: {fileID: 4309781753784790664}
   - component: {fileID: 5986344983403451562}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _date:
-    _moveSpeed: 1
+    _moveSpeed: 3
 --- !u!1 &7133142688073312736
 GameObject:
   m_ObjectHideFlags: 0

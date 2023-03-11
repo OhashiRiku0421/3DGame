@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rangeLeft: {fileID: 1056331366}
   _rangeRight: {fileID: 1764478843}
-  _moveSpeed: 1.5
+  _moveSpeed: 3.5
   _audio: {fileID: -8923365313376921723}
 --- !u!54 &-9061647972200650621
 Rigidbody:
