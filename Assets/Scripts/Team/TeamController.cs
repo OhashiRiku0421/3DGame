@@ -25,9 +25,9 @@ public class TeamController : MonoBehaviour, IPause
         PauseManager.Instance.Entry(gameObject);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(!_isPause)
+        if (!_isPause)
         {
             Move();
         }

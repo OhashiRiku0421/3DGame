@@ -40,7 +40,7 @@ public class TeamGenerator : MonoBehaviour
     /// </summary>
     IEnumerator PopInterval()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         _isPop = false;
     }
 

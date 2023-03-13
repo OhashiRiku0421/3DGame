@@ -12,10 +12,9 @@ public class EnemyController : MonoBehaviour, IAddDamage, IPause
         _date.Init(gameObject);
         PauseManager.Instance.Entry(gameObject);
     }
-
-    private void Update()
+    private void FixedUpdate()
     {
-        if(!_isPause)
+        if (!_isPause)
         {
             _date.Move();
         }
