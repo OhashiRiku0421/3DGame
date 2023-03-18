@@ -23,6 +23,7 @@ public class TeamController : MonoBehaviour, IPause
     private void Start()
     {
         PauseManager.Instance.Entry(gameObject);
+
     }
 
     private void FixedUpdate()
