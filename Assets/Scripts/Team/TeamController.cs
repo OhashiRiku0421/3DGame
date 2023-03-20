@@ -12,8 +12,8 @@ public class TeamController : MonoBehaviour, IPause
     private Transform _rangeRight;
     public Transform RangeRight => _rangeRight;
 
-    [SerializeField, Tooltip("ƒ~ƒCƒ‰‚ÌˆÚ“®‘¬“x")]
-    private float _moveSpeed = 4f;
+    [SerializeField]
+    private TeamData _teamData;
 
     private bool _isPause = false;
 
@@ -23,23 +23,15 @@ public class TeamController : MonoBehaviour, IPause
     private void Start()
     {
         PauseManager.Instance.Entry(gameObject);
-
+        _teamData.Init(transform);
     }
 
     private void FixedUpdate()
     {
         if (!_isPause)
         {
-            Move();
+            _teamData.Move();
         }
-    }
-
-    /// <summary>
-    /// ˆÚ“®ˆ—
-    /// </summary>
-    private void Move()
-    {
-        transform.Translate(Vector3.forward * Time.fixedDeltaTime * _moveSpeed);
     }
 
     private void OnCollisionEnter(Collision collision)
