@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class tunnelGimmickController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject _tunnelEnter;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private GameObject _tunnelExit;
+
+    private void OnCollisionEnter(Collision collision)
     {
         
     }
