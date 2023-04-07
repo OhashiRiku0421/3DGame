@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tunnelGimmickController : MonoBehaviour
+public class tunnelGimmickController : MonoBehaviour, IAddDamage
 {
-    [SerializeField]
-    private GameObject _tunnelEnter;
+
+    [SerializeField, Tooltip("ƒgƒ“ƒlƒ‹‚ÌoŒû")]
+    private Transform _tunnelExit;
 
     [SerializeField]
-    private GameObject _tunnelExit;
+    private ObjectPool _pool;
 
-    private void OnCollisionEnter(Collision collision)
+    public void AddDamage()
     {
-        
+        _pool.PoolPop(_tunnelExit.position);
     }
 }
