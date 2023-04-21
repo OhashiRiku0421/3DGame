@@ -19,5 +19,8 @@ EditorBuildSettings:
     guid: 6fff656a806c16744aa17cbfa151510d
   - enabled: 1
     path: Assets/Scenes/InGameStage2.unity
-    guid: b8ccae833bc33e64da226acb4f9f451a
+    guid: d0a2bbf9436ab1d4f8172373ff1b5b4f
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
