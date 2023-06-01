@@ -2052,6 +2052,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 894189358, guid: 4235cdb82c9ecc34bac523936d036f86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 894189359, guid: 4235cdb82c9ecc34bac523936d036f86, type: 3}
+      propertyPath: m_Text
+      value: '+
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 894189359, guid: 4235cdb82c9ecc34bac523936d036f86, type: 3}
       propertyPath: m_Color.b
       value: 0.2924528
@@ -4790,6 +4800,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 894189358, guid: 4235cdb82c9ecc34bac523936d036f86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 894189359, guid: 4235cdb82c9ecc34bac523936d036f86, type: 3}
+      propertyPath: m_Text
+      value: +
+      objectReference: {fileID: 0}
     - target: {fileID: 8801201913535798304, guid: 4235cdb82c9ecc34bac523936d036f86,
         type: 3}
       propertyPath: m_RootOrder
