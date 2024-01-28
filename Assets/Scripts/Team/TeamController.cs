@@ -20,6 +20,9 @@ public class TeamController : MonoBehaviour, IPause
     [SerializeField]
     private AudioSource _audio;
 
+    [SerializeField]
+    private GameObject _model;
+
     private void Start()
     {
         PauseManager.Instance.Entry(gameObject);
@@ -40,6 +43,7 @@ public class TeamController : MonoBehaviour, IPause
         {
             addDamage.AddDamage();
             _audio.Play();
+            _model.SetActive(false);
             StartCoroutine(AudioInterval());
         }
     }
@@ -51,6 +55,7 @@ public class TeamController : MonoBehaviour, IPause
     {
         yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
+        _model.SetActive(true);
     }
 
     public void Pause()
