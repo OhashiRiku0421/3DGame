@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class EnemyView : MonoBehaviour
+public class CastleView : MonoBehaviour
 {
     [SerializeField, Tooltip("スライダー")]
     private Slider _slider;

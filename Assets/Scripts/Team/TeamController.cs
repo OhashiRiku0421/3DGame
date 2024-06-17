@@ -25,7 +25,7 @@ public class TeamController : MonoBehaviour, IPause
 
     private void Start()
     {
-        PauseManager.Instance.Entry(gameObject);
+        PauseManager.Instance.Entry(this);
         _teamData.Init(transform);
     }
 
@@ -70,6 +70,6 @@ public class TeamController : MonoBehaviour, IPause
 
     private void OnDestroy()
     {
-        PauseManager.Instance.Lift(gameObject);
+        PauseManager.Instance.Lift(this);
     }
 }

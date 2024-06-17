@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour, IAddDamage, IPause
     private void Start()
     {
         _date.Init(gameObject);
-        PauseManager.Instance.Entry(gameObject);
+        PauseManager.Instance.Entry(this);
     }
     private void FixedUpdate()
     {
@@ -37,6 +37,6 @@ public class EnemyController : MonoBehaviour, IAddDamage, IPause
 
     private void OnDestroy()
     {
-        PauseManager.Instance.Lift(gameObject);
+        PauseManager.Instance.Lift(this);
     }
 }

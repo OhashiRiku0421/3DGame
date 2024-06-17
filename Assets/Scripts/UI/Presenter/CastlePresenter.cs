@@ -1,10 +1,10 @@
 using UnityEngine;
 using UniRx;
 
-public class EnemyPresenter : MonoBehaviour
+public class CastlePresenter : MonoBehaviour
 {
     [SerializeField, Tooltip("Viewクラス")]
-    private EnemyView _view;
+    private CastleView _view;
 
     [SerializeField, Tooltip("Modelクラス")]
     private CastleController _castleModel;
@@ -21,7 +21,6 @@ public class EnemyPresenter : MonoBehaviour
     private void HealthObserver()
     {
         _castleModel.Health
-            .Skip(1)//初期化を飛ばす
             .Subscribe(x => _view.HealthSlider(x))
             .AddTo(this);
     }

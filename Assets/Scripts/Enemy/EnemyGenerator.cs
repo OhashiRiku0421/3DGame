@@ -25,7 +25,7 @@ public class EnemyGenerator : MonoBehaviour, IPause
     {
         _isAttack = true;
         StartCoroutine(AttackInterval());
-        PauseManager.Instance.Entry(gameObject);
+        PauseManager.Instance.Entry(this);
     }
 
     private void Update()
@@ -75,6 +75,6 @@ public class EnemyGenerator : MonoBehaviour, IPause
 
     private void OnDestroy()
     {
-        PauseManager.Instance.Lift(gameObject);
+        PauseManager.Instance.Lift(this);
     }
 }

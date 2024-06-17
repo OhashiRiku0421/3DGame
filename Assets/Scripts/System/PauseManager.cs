@@ -18,25 +18,19 @@ public class PauseManager
     /// <summary>
     /// IPauseを継承しているオブジェクトだったらアクションに登録する
     /// </summary>
-    public void Entry(GameObject pauseObject)
+    public void Entry(IPause pause)
     {
-        if(pauseObject.TryGetComponent<IPause>(out IPause pause))
-        {
-            OnPause += pause.Pause;
-            OnResume += pause.Resume;
-        }
+        OnPause += pause.Pause;
+        OnResume += pause.Resume;
     }
 
     /// <summary>
     /// IPauseを継承しているオブジェクトだったらアクションを解除する
     /// </summary>
-    public void Lift(GameObject pauseObject)
+    public void Lift(IPause pause)
     {
-        if (pauseObject.TryGetComponent<IPause>(out IPause pause))
-        {
-            OnPause -= pause.Pause;
-            OnResume -= pause.Resume;
-        }
+        OnPause -= pause.Pause;
+        OnResume -= pause.Resume;
     }
 
     /// <summary>

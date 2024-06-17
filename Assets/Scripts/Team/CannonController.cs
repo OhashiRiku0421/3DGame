@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using DG.Tweening.Core.Easing;
 
 public class CannonController : MonoBehaviour
 {
@@ -14,14 +15,14 @@ public class CannonController : MonoBehaviour
     [SerializeField, Tooltip("生成できる最大数")]
     private int _maxCount = 30;
 
-    [SerializeField, Tooltip("ゲームオーバーのパネル")]
-    private GameObject _over;
-
     public int MaxCount => _maxCount;
 
     private ReactiveProperty<int> _count = new();
 
-    public IReadOnlyReactiveProperty<int> Count => _count;
+    private Subject<Unit> _gameOver = new();
+
+    public ISubject<Unit> GameOver => _gameOver;
+    public IReactiveProperty<int> Count => _count;
 
     private Vector3 _dir;
 
@@ -48,7 +49,8 @@ public class CannonController : MonoBehaviour
         if (other.gameObject.TryGetComponent<IAddDamage>(out IAddDamage addDamage))
         {
             //接触したオブジェクトがIAddDamageを継承していたら以下を実行する
-            GameManager.Instance.GameOver(_over);
+            _gameOver.OnNext(Unit.Default);
+            PauseManager.Instance.Pause();
         }
     }
 }

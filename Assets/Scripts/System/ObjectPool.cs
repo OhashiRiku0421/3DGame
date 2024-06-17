@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField, Tooltip("プールサイズ")]
     int _poolSize = 100;
 
-    [SerializeField, Tooltip("Poolに入れるクラス")]
+    [SerializeField]
     GameObject _poolObject;
 
     private void Start()
