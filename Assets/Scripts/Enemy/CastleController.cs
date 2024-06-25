@@ -25,6 +25,9 @@ public class CastleController : MonoBehaviour, IAddDamage
         _health.Value--;
 
         if (_health.Value <= 0)
+        {
             PauseManager.Instance.Pause();
+            StageData.AddClearStageIndex(StageData.CurrentStageIndex);
+        }
     }
 }
